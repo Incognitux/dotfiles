@@ -1,5 +1,5 @@
 # Dotfiles
-My AwesomeWM dotfiles 
+Config files
 
 ## Dependencies 
 Dependencies for awesomewm config \
