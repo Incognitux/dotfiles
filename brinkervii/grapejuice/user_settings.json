@@ -1,0 +1,80 @@
+{
+  "__version__": 2,
+  "__hardware_profile__": {
+    "graphics_id": "a850eb9c766ad4d6952167ef5cf61af86a6cf9357bbc8a6c9992902ba3df7b73",
+    "gpu_vendor_id": 0,
+    "gpu_pci_id": "00:02.0",
+    "gpu_can_do_vulkan": true,
+    "provider_index": 0,
+    "provider_name": "modesetting",
+    "should_prime": false,
+    "use_mesa_gl_override": false,
+    "preferred_roblox_renderer_string": "Vulkan",
+    "is_multi_gpu": false,
+    "version": 2
+  },
+  "show_fast_flag_warning": false,
+  "no_daemon_mode": true,
+  "release_channel": "master",
+  "disable_updates": false,
+  "ignore_wine_version": false,
+  "try_profiling_hardware": true,
+  "default_wine_home": "/home/incognitux/.local/share/grapejuice/user/wine-download/wine-tkg-staging-fsync-git-7.7.r0.g9df73ee3",
+  "wineprefixes": [
+    {
+      "id": "a8706556-c055-4f64-86e7-bb1e9e78da67",
+      "priority": 0,
+      "name_on_disk": "studio",
+      "display_name": "Studio",
+      "wine_home": "/home/incognitux/.local/share/grapejuice/user/wine-download/wine-tkg-staging-fsync-git-7.7.r0.g9df73ee3",
+      "dll_overrides": "dxdiagn=;winemenubuilder.exe=",
+      "prime_offload_sink": -1,
+      "use_mesa_gl_override": false,
+      "enable_winedebug": false,
+      "winedebug_string": "",
+      "roblox_renderer": "Vulkan",
+      "env": {},
+      "hints": [
+        "studio"
+      ],
+      "fast_flags": {},
+      "third_party": {
+        "fps_unlocker": false,
+        "dxvk": false
+      }
+    },
+    {
+      "id": "51bfee66-3d37-40be-87b3-1c7d552ca5cf",
+      "priority": 0,
+      "name_on_disk": "player",
+      "display_name": "Player",
+      "wine_home": "/home/incognitux/.local/share/grapejuice/user/wine-download/wine-tkg-staging-fsync-git-7.7.r0.g9df73ee3",
+      "dll_overrides": "dxdiagn=;winemenubuilder.exe=",
+      "prime_offload_sink": -1,
+      "use_mesa_gl_override": false,
+      "enable_winedebug": false,
+      "winedebug_string": "",
+      "roblox_renderer": "D3D11",
+      "env": {
+        "MANGOHUD": "1",
+        "gamemoderun": "1"
+      },
+      "hints": [
+        "player"
+      ],
+      "fast_flags": {
+        "roblox_studio": {},
+        "roblox_player": {
+          "FFlagForceFutureIsBrightPhase2": true,
+          "FFlagForceFutureIsBrightPhase3": true
+        },
+        "roblox_app": {}
+      },
+      "third_party": {
+        "fps_unlocker": true,
+        "dxvk": true
+      }
+    }
+  ],
+  "unsupported_settings": {}
+}
