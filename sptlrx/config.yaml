@@ -1,0 +1,42 @@
+cookie: ""
+player: mpris
+timerInterval: 200
+updateInterval: 2000
+style:
+  hAlignment: center
+  before:
+    background: ""
+    foreground: "#cdd6f4"
+    bold: false
+    italic: false
+    undeline: false
+    strikethrough: false
+    blink: false
+    faint: false
+  current:
+    background: ""
+    foreground: "#f38ba8"
+    bold: true
+    italic: false
+    undeline: false
+    strikethrough: false
+    blink: true
+    faint: false
+  after:
+    background: ""
+    foreground: "#f2cdcd"
+    bold: false
+    italic: false
+    undeline: false
+    strikethrough: false
+    blink: false
+    faint: false
+pipe:
+  length: 0
+  overflow: word
+  ignoreErrors: true
+mpd:
+  address: 127.0.0.1:6600
+  password: ""
+mopidy:
+  address: 127.0.0.1:6680
