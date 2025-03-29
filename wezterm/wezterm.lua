@@ -3,7 +3,9 @@ local act = wezterm.action
 
 local config = {
   font = wezterm.font('FiraMonoNerdFont', { weight = 'Medium' }),
-  font_size = 10.5,
+  font_size = 12,
+  initial_rows = 40,
+  initial_cols = 130,
   hide_tab_bar_if_only_one_tab = true,
   show_new_tab_button_in_tab_bar = false,
   enable_scroll_bar = true,
@@ -15,8 +17,12 @@ local config = {
   default_cursor_style = 'SteadyUnderline',
   window_padding = {
     right = 8,
+    left = 8,
+    top = 2,
+    bottom = 2,
   },
   disable_default_key_bindings = true,
+  window_decorations = "NONE"
 }
 
 config.keys = {
@@ -61,6 +67,9 @@ config.keys = {
   { key = 'C', mods = 'CTRL|SHIFT', action = act.CopyTo 'Clipboard' },
   { key = 'v', mods = 'CTRL|SHIFT', action = act.PasteFrom 'Clipboard' },
   { key = 'Insert', mods = 'SHIFT', action = act.PasteFrom 'PrimarySelection' },
+
+  { key = 'PageUp', action = act.ScrollByPage(-0.9) },
+  { key = 'PageDown', action = act.ScrollByPage(0.9) },
 }
 
 for i = 1, 9 do

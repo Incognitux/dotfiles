@@ -2,29 +2,14 @@ return {
   {
     "stevearc/conform.nvim",
     -- event = 'BufWritePre', -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
+    opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
-  },
-
-  {
-  	"williamboman/mason.nvim",
-  	opts = {
-  		ensure_installed = {
-  			"lua-language-server", "stylua",
-  			"html-lsp", "css-lsp" , "prettier",
-        "clangd", "semgrep"
-  		},
-  	},
   },
 
   {
@@ -32,11 +17,15 @@ return {
   	opts = {
   		ensure_installed = {
   			"vim", "lua", "vimdoc",
-        "html", "css", "javascript",
-        "c"
+        "html", "css",
+        "rust", "c", "cpp",
+        "javascript", "typescript", "json"
   		},
-      highlight = { enable = true },
-      indent = { enable = true },
   	},
+  },
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" }
   },
 }

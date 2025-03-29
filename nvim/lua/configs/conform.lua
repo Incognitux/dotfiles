@@ -3,10 +3,6 @@ local options = {
     lua = { "stylua" },
     css = { "prettier" },
     html = { "prettier" },
-    javascript = { "prettier" },
-    python = { "black" },
-    c = { "clang-format" },
-    cpp = { "clang-format" },
   },
 
   -- format_on_save = {
@@ -16,4 +12,4 @@ local options = {
   -- },
 }
 
-require("conform").setup(options)
+return options
