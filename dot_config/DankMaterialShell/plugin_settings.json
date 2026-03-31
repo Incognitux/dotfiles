@@ -1,0 +1,59 @@
+{
+  "dankLauncherKeys": {
+    "enabled": true
+  },
+  "emojiLauncher": {
+    "enabled": true
+  },
+  "lyricsOnPanel": {
+    "enabled": true
+  },
+  "grimblast": {
+    "enabled": false
+  },
+  "screenshotToggle": {
+    "enabled": true
+  },
+  "myPlugin": {
+    "enabled": true,
+    "displayText": "OOF",
+    "isEnabled": true,
+    "clickCount": 63,
+    "mode": "HSL"
+  },
+  "dankKDEConnect": {
+    "enabled": true
+  },
+  "displayMirror": {
+    "enabled": true
+  },
+  "controlCenterDetailExample": {
+    "enabled": true
+  },
+  "": {
+    "mode": "RGB"
+  },
+  "dms-color-picker": {
+    "mode": "CMYK"
+  },
+  "formatColorPicker": {
+    "enabled": true,
+    "mode": "RGB",
+    "formats": "HEX, RGB, HSL, CMYK"
+  },
+  "colorPicker": {
+    "enabled": true,
+    "isEnabled": false,
+    "clickCount": 10
+  },
+  "niriScreenshot": {
+    "enabled": true
+  },
+  "dms-niri-screenshot": {
+    "mode": "interactive"
+  },
+  "screenRecorder": {
+    "enabled": true,
+    "quality": "high"
+  }
+}

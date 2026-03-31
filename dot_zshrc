@@ -1,0 +1,86 @@
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+
+LC_CTYPE=en_US.UTF-8
+LC_ALL=en_US.UTF-8
+
+export PATH="$HOME/.npm/bin:$PATH"
+export PATH="$HOME/.bun/bin:$PATH"
+export PATH="$HOME/.local/share/bin:$PATH"
+export LD_LIBRARY_PATH=/usr/local/lib
+export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+export WORDCHARS='*?_-.[]~/'
+export SYSTEMD_LESS="FRXMK"
+export SYSTEMD_COLORS=true
+export GODOT4="/usr/bin/godot-mono"
+export PATH="/usr/lib/qt6/bin:$PATH"
+export EDITOR="nvim"
+
+alias cdg="cd ~/Downloads/gitCloned"
+alias cdG="cd ~/Documents/Git"
+alias py=python
+alias ls=lsd
+alias rm="rm -i"
+alias cd=z
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+zinit light zsh-users/zsh-history-substring-search
+
+zinit wait"1" lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
+# KEY BINDS
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+bindkey '^[[3~' delete-char
+bindkey '^[[3;5~' delete-word
+bindkey '^H' backward-kill-word
+bindkey '^U' backward-kill-line
+bindkey '^K' kill-whole-line
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+# Instl.sh installer binary location
+export PATH=/$PATH:$HOME/.local/bin
+eval "$(atuin init zsh --disable-up-arrow)"
+
+source /usr/share/nvm/init-nvm.sh
+
+# bun completions
+[ -s "/home/incognitux/.bun/_bun" ] && source "/home/incognitux/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

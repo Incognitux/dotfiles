@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Trigger whenever ANYTHING in these paths changes:
+# intel-undervolt hash: {{ include "dot_system/intel-undervolt.conf" | sha256sum }}
+# keyd folder hash: {{ output "sh" "-c" (printf "ls -lR %s | sha256sum" (joinPath .chezmoi.sourceDir "dot_system/keyd")) | trim }}
+
+CONFIGS=(
+    "dot_system/intel-undervolt.conf:/etc/intel-undervolt.conf:intel-undervolt"
+    "dot_system/keyd:/etc/keyd:keyd"
+)
+
+for entry in "${CONFIGS[@]}"; do
+    IFS=":" read -r src dest service <<< "$entry"
+    src_path="{{ .chezmoi.sourceDir }}/$src"
+
+    echo "Syncing $src to $dest..."
+    
+    if [ -d "$src_path" ]; then
+        # It's a directory: Ensure destination exists and sync contents
+        sudo mkdir -p "$dest"
+        # --archive preserves perms, --delete removes files in /etc that you deleted in dotfiles
+        sudo rsync -av --delete "$src_path/" "$dest/"
+        sudo chown -R root:root "$dest"
+    else
+        # It's a single file
+        sudo mkdir -p "$(dirname "$dest")"
+        sudo cp "$src_path" "$dest"
+        sudo chmod 644 "$dest"
+        sudo chown root:root "$dest"
+    fi
+
+    if [ -n "$service" ] && systemctl is-active --quiet "$service"; then
+        echo "Restarting $service..."
+        sudo systemctl restart "$service"
+    fi
+done
