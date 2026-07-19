@@ -23,7 +23,9 @@
   },
   "dankKDEConnect": {
     "enabled": true,
-    "selectedDeviceId": "976e6641_5c67_48d9_a09e_c8466235a99e"
+    "selectedDeviceId": "976e6641_5c67_48d9_a09e_c8466235a99e",
+    "deviceImageMap": "{}",
+    "showOngoingMedia": false
   },
   "displayMirror": {
     "enabled": true
@@ -39,7 +41,7 @@
   },
   "formatColorPicker": {
     "enabled": true,
-    "mode": "RGB",
+    "mode": "HEX",
     "formats": "HEX, RGB, HSL, CMYK"
   },
   "colorPicker": {
