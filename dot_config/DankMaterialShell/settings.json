@@ -164,6 +164,16 @@
       "id": "plugin_formatColorPicker",
       "enabled": true,
       "width": 50
+    },
+    {
+      "id": "plugin_screenRecorder",
+      "enabled": true,
+      "width": 50
+    },
+    {
+      "id": "plugin_dankKDEConnect",
+      "enabled": true,
+      "width": 50
     }
   ],
   "showWorkspaceIndex": false,
@@ -570,7 +580,14 @@
   "displayProfileAutoSelect": false,
   "displayShowDisconnected": false,
   "displaySnapToEdge": true,
-  "connectedFrameBarStyleBackups": {},
+  "connectedFrameBarStyleBackups": {
+    "default": {
+      "shadowIntensity": 0,
+      "squareCorners": true,
+      "gothCornersEnabled": true,
+      "borderEnabled": false
+    }
+  },
   "barConfigs": [
     {
       "id": "default",
@@ -582,6 +599,10 @@
       ],
       "showOnLastDisplay": true,
       "leftWidgets": [
+        {
+          "id": "bongoCat",
+          "enabled": true
+        },
         "workspaceSwitcher",
         "focusedWindow"
       ],
@@ -617,10 +638,6 @@
         {
           "id": "battery",
           "enabled": true
-        },
-        {
-          "id": "screenRecorder",
-          "enabled": true
         }
       ],
       "spacing": 0,
@@ -628,9 +645,9 @@
       "bottomGap": 0,
       "transparency": 1,
       "widgetTransparency": 1,
-      "squareCorners": true,
+      "squareCorners": false,
       "noBackground": false,
-      "gothCornersEnabled": true,
+      "gothCornersEnabled": false,
       "gothCornerRadiusOverride": false,
       "gothCornerRadiusValue": 12,
       "borderEnabled": false,
@@ -746,21 +763,21 @@
   ],
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],
-  "frameEnabled": false,
-  "frameThickness": 16,
-  "frameRounding": 23,
+  "frameEnabled": true,
+  "frameThickness": 8,
+  "frameRounding": 12,
   "frameColor": "",
   "frameOpacity": 1,
   "frameScreenPreferences": [
     "all"
   ],
   "frameBarSize": 40,
-  "frameShowOnOverview": false,
+  "frameShowOnOverview": true,
   "frameBlurEnabled": true,
   "frameCloseGaps": true,
   "frameLauncherEmergeSide": "bottom",
   "frameLauncherArcExtender": false,
-  "frameLauncherEdgeHover": false,
+  "frameLauncherEdgeHover": true,
   "frameMode": "connected",
   "barInsetPaddingShared": -1,
   "barInsetPaddingSyncAll": false,

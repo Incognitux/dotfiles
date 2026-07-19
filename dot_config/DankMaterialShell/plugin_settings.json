@@ -22,7 +22,8 @@
     "mode": "HSL"
   },
   "dankKDEConnect": {
-    "enabled": true
+    "enabled": true,
+    "selectedDeviceId": "976e6641_5c67_48d9_a09e_c8466235a99e"
   },
   "displayMirror": {
     "enabled": true
@@ -57,6 +58,15 @@
     "quality": "high"
   },
   "bongoCat": {
-    "enabled": true
+    "enabled": true,
+    "catColorMode": "primary",
+    "soundEnabled": false,
+    "showMetrics": false
+  },
+  "typingSounds": {
+    "enabled": true,
+    "mouseEnabled": false,
+    "selectedPackPath": "/home/incognitux/.config/DankMaterialShell/plugins/typingSounds/soundpacks/cherrymx-red-pbt",
+    "volume": 50
   }
 }
