@@ -55,5 +55,8 @@
   "screenRecorder": {
     "enabled": true,
     "quality": "high"
+  },
+  "bongoCat": {
+    "enabled": true
   }
 }

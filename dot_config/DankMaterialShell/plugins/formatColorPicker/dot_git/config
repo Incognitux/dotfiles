@@ -1,7 +1,8 @@
 [core]
-	bare = false
-	repositoryformatversion = 1
+	repositoryformatversion = 0
 	filemode = true
+	bare = false
+	logallrefupdates = true
 [remote "origin"]
 	url = https://github.com/Incognitux/dms-format-color-picker
 	fetch = +refs/heads/*:refs/remotes/origin/*

@@ -2,7 +2,7 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
-map("i", "jk", "<ESC>")
+-- map("i", "jk", "<ESC>")
 
 -- buffer
 map("n", ",p", '"_dP', {desc = "Paste over without changing paste register"})  -- greatest remap evar! https://youtu.be/qZO9A5F6BZs?t=356

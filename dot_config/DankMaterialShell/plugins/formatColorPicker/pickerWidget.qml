@@ -58,6 +58,8 @@ PluginComponent {
     ccDetailContent: Component {
       Rectangle {
         id: innerRect
+        anchors.left: parent ? parent.left : undefined
+        anchors.right: parent ? parent.right : undefined
         implicitHeight: 100
         radius: Theme.cornerRadius
         color: Theme.withAlpha(Theme.surfaceContainerHigh, Theme.popupTransparency)
@@ -66,13 +68,15 @@ PluginComponent {
         GridLayout {
           anchors.centerIn : parent
           columns: 3
+          columnSpacing: 10
+          rowSpacing: 10
 
           Repeater {
             model: ["HEX", "RGB", "HSL", "HSV", "CMYK", "JSON"]
 
             delegate: StyledRect {
-              width: (innerRect.width - 60) / 3
-              height: innerRect.height / 3
+              Layout.preferredWidth: (innerRect.width - 60) / 3
+              Layout.preferredHeight: innerRect.height / 3
               radius: Theme.cornerRadius
               color: root.mode === modelData ? Theme.primary : 'transparent'
               border.width: 2
@@ -138,3 +142,4 @@ PluginComponent {
         }
     }
 }
+

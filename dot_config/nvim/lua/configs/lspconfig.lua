@@ -13,7 +13,8 @@ local servers = {
   "pug",
   "kotlin_language_server",
   "omnisharp",
-  "qmlls"
+  "qmlls",
+  "rust_analyzer"
 }
 
 vim.lsp.enable(servers)
