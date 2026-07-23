@@ -17,6 +17,10 @@ local servers = {
   "rust_analyzer"
 }
 
+vim.lsp.config("qmlls", {
+  cmd = { "qmlls", "-E" },
+})
+
 vim.lsp.enable(servers)
 
 -- local nvlsp = require "nvchad.configs.lspconfig"

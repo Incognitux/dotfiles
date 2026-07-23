@@ -166,12 +166,12 @@
       "width": 50
     },
     {
-      "id": "plugin_screenRecorder",
+      "id": "plugin_dankKDEConnect",
       "enabled": true,
       "width": 50
     },
     {
-      "id": "plugin_dankKDEConnect",
+      "id": "plugin_typingSounds",
       "enabled": true,
       "width": 50
     }
@@ -764,7 +764,7 @@
   "launcherPluginVisibility": {},
   "launcherPluginOrder": [],
   "frameEnabled": true,
-  "frameThickness": 8,
+  "frameThickness": 2,
   "frameRounding": 12,
   "frameColor": "",
   "frameOpacity": 1,
