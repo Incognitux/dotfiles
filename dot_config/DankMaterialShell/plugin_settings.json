@@ -41,7 +41,7 @@
   },
   "formatColorPicker": {
     "enabled": true,
-    "mode": "HSL",
+    "mode": "HEX",
     "formats": "HEX, RGB, HSL, CMYK"
   },
   "colorPicker": {
