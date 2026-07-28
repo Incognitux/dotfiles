@@ -789,7 +789,7 @@
   "frameCloseGaps": true,
   "frameLauncherEmergeSide": "bottom",
   "frameLauncherArcExtender": false,
-  "frameLauncherEdgeHover": true,
+  "frameLauncherEdgeHover": false,
   "frameMode": "connected",
   "barInsetPaddingShared": -1,
   "barInsetPaddingSyncAll": false,

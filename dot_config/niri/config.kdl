@@ -24,7 +24,6 @@ gestures {
     }
     hot-corners {
         top-right
-        top-left
     }
 }
 
