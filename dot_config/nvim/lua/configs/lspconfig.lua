@@ -8,13 +8,13 @@ local servers = {
   "clangd",
   "hyprls",
   "biome",
-  "pylsp",
   "ruby_lsp",
   "pug",
   "kotlin_language_server",
   "omnisharp",
   "qmlls",
-  "rust_analyzer"
+  "rust_analyzer",
+  "ruff"
 }
 
 vim.lsp.config("qmlls", {

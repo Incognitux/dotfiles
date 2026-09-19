@@ -41,7 +41,7 @@
   },
   "formatColorPicker": {
     "enabled": true,
-    "mode": "HEX",
+    "mode": "HSV",
     "formats": "HEX, RGB, HSL, CMYK"
   },
   "colorPicker": {
@@ -70,5 +70,9 @@
     "mouseEnabled": false,
     "selectedPackPath": "/home/incognitux/.config/DankMaterialShell/plugins/typingSounds/soundpacks/cherrymx-red-pbt",
     "volume": 50
+  },
+  "dankscale": {
+    "enabled": true,
+    "lastAccount": "naanx2006@gmail.com"
   }
 }

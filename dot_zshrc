@@ -84,3 +84,16 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# >>> headroom persistent env >>>
+export HEADROOM_PORT="8787"
+export HEADROOM_HOST="127.0.0.1"
+export HEADROOM_MODE="cache"
+export HEADROOM_BACKEND="anthropic"
+export HEADROOM_TELEMETRY="off"
+export ANTHROPIC_BASE_URL="http://127.0.0.1:8787"
+export ENABLE_TOOL_SEARCH="true"
+export OPENAI_BASE_URL="http://127.0.0.1:8787/v1"
+export COPILOT_PROVIDER_TYPE="anthropic"
+export COPILOT_PROVIDER_BASE_URL="http://127.0.0.1:8787"
+# <<< headroom persistent env <<<
