@@ -41,7 +41,7 @@
   },
   "formatColorPicker": {
     "enabled": true,
-    "mode": "HSV",
+    "mode": "RGB",
     "formats": "HEX, RGB, HSL, CMYK"
   },
   "colorPicker": {
@@ -68,11 +68,14 @@
   "typingSounds": {
     "enabled": true,
     "mouseEnabled": false,
-    "selectedPackPath": "/home/incognitux/.config/DankMaterialShell/plugins/typingSounds/soundpacks/cherrymx-red-pbt",
+    "selectedPackPath": "/home/incognitux/.config/DankMaterialShell/plugins/typingSounds/soundpacks/cherrymx-brown-abs",
     "volume": 50
   },
   "dankscale": {
     "enabled": true,
     "lastAccount": "naanx2006@gmail.com"
+  },
+  "chargingMode": {
+    "enabled": true
   }
 }

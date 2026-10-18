@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
+import qs.Common
 import qs.Services
 import qs.Modules.Plugins
 
@@ -60,6 +61,9 @@ Singleton {
     }
 
     property var _backend: null
+    property bool _nameWatchSubscribed: false
+
+    readonly property var _backendBusNames: ["org.kde.kdeconnect", "ca.andyholmes.Valent"]
 
     signal devicesListChanged
     signal deviceUpdated(string deviceId)
@@ -70,6 +74,7 @@ Singleton {
     signal backendChanged
 
     Component.onCompleted: {
+        watchBusNames();
         detectBackend();
         updateDeviceTypeMap();
     }
@@ -77,9 +82,42 @@ Singleton {
     Connections {
         target: DMSService
         function onConnectionStateChanged() {
-            if (DMSService.isConnected)
-                detectBackend();
+            if (!DMSService.isConnected) {
+                root._nameWatchSubscribed = false;
+                return;
+            }
+            root.watchBusNames();
+            root.detectBackend();
         }
+
+        function onDbusSignalReceived(subId, data) {
+            if (data.member !== "NameOwnerChanged")
+                return;
+            const name = data.body?.[0];
+            if (!root._backendBusNames.includes(name))
+                return;
+            switch (name) {
+            case "org.kde.kdeconnect":
+                KDEConnectService.checkAvailability();
+                break;
+            case "ca.andyholmes.Valent":
+                ValentService.checkAvailability();
+                break;
+            }
+            root.detectBackend();
+        }
+    }
+
+    function watchBusNames() {
+        if (_nameWatchSubscribed || !DMSService.isConnected)
+            return;
+        _nameWatchSubscribed = true;
+        DMSService.dbusSubscribe("session", "org.freedesktop.DBus", "/org/freedesktop/DBus", "org.freedesktop.DBus", "NameOwnerChanged", function (response) {
+            if (response.error) {
+                console.warn("[PhoneConnect] NameOwnerChanged subscription failed:", response.error);
+                root._nameWatchSubscribed = false;
+            }
+        });
     }
 
     Connections {
@@ -142,7 +180,7 @@ Singleton {
         if (!DMSService.isConnected)
             return;
 
-        DMSService.dbusListNames("session", function(response) {
+        DMSService.dbusListNames("session", function (response) {
             if (response.error)
                 return;
 
@@ -190,10 +228,10 @@ Singleton {
 
     function hasPlugin(deviceId, pluginName) {
         const dev = getDevice(deviceId);
-        if (!dev || !dev.supportedPlugins) return false;
-        
-        return dev.supportedPlugins.includes(pluginName) || 
-               dev.supportedPlugins.includes("kdeconnect_" + pluginName);
+        if (!dev || !dev.supportedPlugins)
+            return false;
+
+        return dev.supportedPlugins.includes(pluginName) || dev.supportedPlugins.includes("kdeconnect_" + pluginName);
     }
 
     function ringDevice(deviceId, callback) {
@@ -248,7 +286,7 @@ Singleton {
         if (!filePath.startsWith("/"))
             return "";
 
-        const encoded = filePath.split("/").map(function(segment) {
+        const encoded = filePath.split("/").map(function (segment) {
             return encodeURIComponent(segment);
         }).join("/");
 
@@ -436,16 +474,10 @@ Singleton {
     function sendSms(deviceId, addresses, message, attachmentUrls, callback) {
         if (activeBackend === PhoneConnectService.Backend.KDEConnect) {
             const addr = Array.isArray(addresses) ? (addresses[0] || "") : (addresses || "");
-            Quickshell.execDetached([
-                "kdeconnect-cli",
-                "-d",
-                deviceId,
-                "--send-sms",
-                message,
-                "--destination",
-                addr
-            ]);
-            callback?.({ success: true });
+            Quickshell.execDetached(["kdeconnect-cli", "-d", deviceId, "--send-sms", message, "--destination", addr]);
+            callback?.({
+                success: true
+            });
             return;
         }
 
@@ -490,7 +522,7 @@ Singleton {
                 try {
                     newMap = JSON.parse(vars["deviceTypeMap"]);
                     changed = true;
-                } catch(e) {}
+                } catch (e) {}
             }
         }
         if (!changed) {
@@ -500,9 +532,9 @@ Singleton {
                     newMap = JSON.parse(data.deviceTypeMap);
                     changed = true;
                 }
-            } catch(e) {}
+            } catch (e) {}
         }
-        
+
         if (JSON.stringify(deviceTypeMap) !== JSON.stringify(newMap)) {
             deviceTypeMap = newMap;
             root.devicesListChanged();
@@ -525,19 +557,26 @@ Singleton {
     }
 
     function getDeviceIcon(device) {
-        if (!device) return "smartphone";
+        if (!device)
+            return "smartphone";
         const deviceId = device.id;
         if (deviceId && deviceTypeMap[deviceId]) {
             switch (deviceTypeMap[deviceId]) {
-            case "phone": return "smartphone";
-            case "tablet": return "tablet";
-            case "laptop": return "laptop";
-            case "desktop": return "desktop_windows";
-            case "tv": return "tv";
+            case "phone":
+                return "smartphone";
+            case "tablet":
+                return "tablet";
+            case "laptop":
+                return "laptop";
+            case "desktop":
+                return "desktop_windows";
+            case "tv":
+                return "tv";
             }
         }
         let icon = _backend?.getDeviceIcon(device) ?? "smartphone";
-        if (icon === "computer") icon = "desktop_windows";
+        if (icon === "computer")
+            icon = "desktop_windows";
         return icon;
     }
 
@@ -552,10 +591,10 @@ Singleton {
     function getNetworkTypeLabel(device) {
         if (!device || !device.networkType)
             return "N/A";
-        
+
         const rawType = device.networkType.toString().trim();
         const type = rawType.toUpperCase();
-        
+
         // Map common network types to friendly, standard representations
         switch (type) {
         case "NR":
@@ -595,13 +634,17 @@ Singleton {
 
     function getNetworkStrengthLabel(device) {
         if (!device || device.networkStrength === undefined || device.networkStrength < 0)
-            return "Unknown";
+            return I18n.trFor("dankKDEConnect", "Unknown", "network signal strength");
         const strength = device.networkStrength;
-        if (strength >= 4) return "Excellent";
-        if (strength === 3) return "Good";
-        if (strength === 2) return "Fair";
-        if (strength === 1) return "Weak";
-        return "No Signal";
+        if (strength >= 4)
+            return I18n.trFor("dankKDEConnect", "Excellent", "network signal strength");
+        if (strength === 3)
+            return I18n.trFor("dankKDEConnect", "Good", "network signal strength");
+        if (strength === 2)
+            return I18n.trFor("dankKDEConnect", "Fair", "network signal strength");
+        if (strength === 1)
+            return I18n.trFor("dankKDEConnect", "Weak", "network signal strength");
+        return I18n.trFor("dankKDEConnect", "No Signal", "network signal strength");
     }
 
     function getNetworkTypeIcon(device) {

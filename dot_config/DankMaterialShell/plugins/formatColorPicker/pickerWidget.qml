@@ -40,15 +40,24 @@ PluginComponent {
       }
     }
 
+    readonly property var validFormats: ["hex", "rgb", "hsl", "hsv", "cmyk", "json"]
+
+    Timer {
+      id: pickTimer
+      interval: 300
+      repeat: false
+      onTriggered: {
+        let flag = (root.mode || "HEX").toLowerCase()
+        if (root.validFormats.indexOf(flag) === -1) flag = "hex"
+        Quickshell.execDetached(["dms", "color", "pick", "--" + flag, "-a"])
+      }
+    }
+
     function pickColor() {
       if (typeof PopoutService !== "undefined" && PopoutService) {
         PopoutService.closeControlCenter()
       }
-
-      let flag = (root.mode || "HEX").toLowerCase()
-      let cmd = `sleep 0.3; dms color pick --${flag} -a`
-
-      Quickshell.execDetached(["sh", "-c", cmd])
+      pickTimer.start()
     }
 
     onCcWidgetToggled: {
@@ -68,14 +77,14 @@ PluginComponent {
         GridLayout {
           anchors.centerIn : parent
           columns: 3
-          columnSpacing: 10
-          rowSpacing: 10
+          columnSpacing: Theme.spacingS
+          rowSpacing: Theme.spacingS
 
           Repeater {
             model: ["HEX", "RGB", "HSL", "HSV", "CMYK", "JSON"]
 
             delegate: StyledRect {
-              Layout.preferredWidth: (innerRect.width - 60) / 3
+              Layout.preferredWidth: (innerRect.width - (Theme.spacingS * (parent.columns + 1))) / 3
               Layout.preferredHeight: innerRect.height / 3
               radius: Theme.cornerRadius
               color: root.mode === modelData ? Theme.primary : 'transparent'

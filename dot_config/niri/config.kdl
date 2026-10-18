@@ -262,6 +262,7 @@ window-rule {
     open-floating true
 }
 debug {
+    disable-direct-scanout
     honor-xdg-activation-with-invalid-serial
 }
 
@@ -284,3 +285,4 @@ include "dms/outputs.kdl"
 include "dms/cursor.kdl"
 
 include "dms/windowrules.kdl"
+include "dms/input.kdl"
