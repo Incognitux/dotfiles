@@ -1,5 +1,5 @@
 # Font Configuration
-font-size = 12
+font-size = 13
 
 # Window Configuration
 window-decoration = false
@@ -13,7 +13,8 @@ cursor-style = block
 cursor-style-blink = true
 
 # Scrollback
-scrollback-limit = 13023
+scrollback-limit = 28000
+mouse-scroll-multiplier = precision:2,discrete:3
 
 # Terminal features
 mouse-hide-while-typing = true

@@ -97,3 +97,10 @@ export OPENAI_BASE_URL="http://127.0.0.1:8787/v1"
 export COPILOT_PROVIDER_TYPE="anthropic"
 export COPILOT_PROVIDER_BASE_URL="http://127.0.0.1:8787"
 # <<< headroom persistent env <<<
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/incognitux/.lmstudio/bin"
+# End of LM Studio CLI section
+
+# Copilot
+export COPILOT_AUTO_UPDATE=false
