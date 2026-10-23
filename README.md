@@ -67,7 +67,6 @@ chezmoi update
 | Package | Purpose | Source |
 |---------|---------|--------|
 | `niri` | Wayland compositor | `niri/config.kdl` |
-| `hyprland` | Wayland compositor | `hypr/hyprland.conf` |
 | `hyprpaper` | Wallpaper daemon | `hypr/hyprpaper.conf` |
 | `waybar` | Status bar | Referenced in niri |
 | `kanshi` | Display management | Implied |
@@ -78,18 +77,14 @@ chezmoi update
 
 | Package | Purpose | Source |
 |---------|---------|--------|
-| `wezterm` | GPU terminal | `wezterm/wezterm.lua` |
 | `ghostty` | Terminal | Referenced in niri/hypr rules |
-| `foot` | Wayland terminal | `foot/dank-colors.ini` |
-| `kitty` | Terminal | Referenced in window rules |
-| `alacritty` | Terminal | Referenced in window rules |
 
 ### Fonts
 
 | Package | Purpose | Source |
 |---------|---------|--------|
-| `ttf-firacode-nerd` / `nerd-fonts-fira-mono` | Monospace font | `wezterm.lua` |
-| `ttf-spacemono-nerd` / `nerd-fonts-space-mono` | Window frame font | `wezterm.lua` |
+| `ttf-firacode-nerd` / `nerd-fonts-fira-mono` | Monospace font | `ghostty` config |
+| `ttf-spacemono-nerd` / `nerd-fonts-space-mono` | Window frame font | `ghostty` config |
 
 ### Neovim Ecosystem
 
@@ -139,7 +134,6 @@ chezmoi update
 | `html` | HTML |
 | `cssls` | CSS |
 | `clangd` | C/C++ |
-| `hyprls` | Hyprland config |
 | `biome` | JS/TS/JSON |
 | `ruby_lsp` | Ruby |
 | `pug` | Pug templates |
@@ -159,9 +153,9 @@ chezmoi update
 |---------|---------|--------|
 | `intel-undervolt` | CPU undervolting | `intel-undervolt.conf` |
 | `keyd` | Key remapping | `keyd/default.conf` |
-| `pipewire` | Audio server | `mpd.conf` |
+| `pipewire` | Audio server | System |
 | `wireplumber` | PipeWire session manager | Implied |
-| `dbus` | IPC | `hyprland.conf` |
+| `dbus` | IPC | System |
 
 ### Applications (from window rules & configs)
 
@@ -169,19 +163,13 @@ chezmoi update
 |---------|---------|
 | `thunderbird` | Email |
 | `firefox` | Browser |
-| `zen-browser` | Browser |
 | `steam` | Gaming |
-| `zoom` | Video calls |
 | `pavucontrol` | Audio control |
 | `nm-connection-editor` | Network |
 | `gnome-control-center` | Settings |
 | `gnome-calculator` | Calculator |
-| `galculator` | Calculator |
-| `blueman-manager` | Bluetooth |
 | `nautilus` | Files |
 | `xdg-desktop-portal` | Portal |
-| `mpd` | Music daemon |
-| `mpDris2` | MPRIS bridge |
 | `sptlrx` | Spotify lyrics |
 
 ### Screenshot & Recording
@@ -264,20 +252,20 @@ chezmoi update
 
 ## 🚀 Quick Install Commands for New Laptop
 
-### Arch/CachyOS (pacman + yay)
+### Arch/CachyOS (pacman + paru)
 
 ```bash
 # Core system
 sudo pacman -S zsh starship zoxide atuin nvm bun pyenv \
-  niri hyprland hyprpaper waybar kanshi wlr-randr gammastep \
-  wezterm ghostty foot kitty alacritty \
+  niri hyprpaper waybar kanshi wlr-randr gammastep \
+  ghostty \
   intel-undervolt keyd pipewire wireplumber \
   grim slurp grimblast wl-clipboard wtype wf-recorder \
   qt6ct qt6-base qt6-5compat qt6-svg qt6-networkauth qt6-imageformats \
-  mpd mpDris2 sptlrx \
-  thunderbird firefox zen-browser steam zoom \
+  sptlrx \
+  thunderbird firefox steam \
   pavucontrol nm-connection-editor gnome-control-center \
-  gnome-calculator galculator blueman-manager nautilus \
+  gnome-calculator nautilus \
   xdg-desktop-portal \
   fzf ripgrep fd bat lsd jq \
   ttf-firacode-nerd ttf-spacemono-nerd \
@@ -286,7 +274,7 @@ sudo pacman -S zsh starship zoxide atuin nvm bun pyenv \
   nvchecker
 
 # AUR packages
-yay -S zinit-git nvm pyenv headroom lmstudio \
+paru -S zinit-git nvm pyenv headroom lmstudio \
   prismlauncher-offline \
   DankMaterialShell-git \
   typing-sounds-git \
