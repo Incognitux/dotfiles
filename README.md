@@ -83,8 +83,8 @@ chezmoi update
 
 | Package | Purpose | Source |
 |---------|---------|--------|
-| `ttf-firacode-nerd` / `nerd-fonts-fira-mono` | Monospace font | `ghostty` config |
-| `ttf-spacemono-nerd` / `nerd-fonts-space-mono` | Window frame font | `ghostty` config |
+| `ttf-fira-mono` | Monospace font | `ghostty` config |
+| `ttf-space-mono-nerd` | Window frame font | `ghostty` config |
 
 ### Neovim Ecosystem
 
@@ -268,7 +268,7 @@ sudo pacman -S zsh starship zoxide atuin nvm bun pyenv \
   gnome-calculator nautilus \
   xdg-desktop-portal \
   fzf ripgrep fd bat lsd jq \
-  ttf-firacode-nerd ttf-spacemono-nerd \
+  ttf-fira-mono ttf-space-mono-nerd \
   git cmake extra-cmake-modules java-environment vulkan-headers \
   quazip-qt6 tomlplusplus cmark gamemode libarchive qrencode \
   nvchecker
@@ -284,11 +284,8 @@ paru -S zinit-git nvm pyenv headroom lmstudio \
 ### Fonts
 
 ```bash
-# Nerd Fonts (choose your method)
-# Option 1: pacman
-sudo pacman -S nerd-fonts-fira-mono nerd-fonts-space-mono
-
-# Option 2: Manual download from https://nerdfonts.com/
+# Nerd Fonts
+sudo pacman -S ttf-fira-mono ttf-space-mono-nerd
 ```
 
 ### Neovim Setup
@@ -306,7 +303,7 @@ sudo pacman -S nerd-fonts-fira-mono nerd-fonts-space-mono
 - [ ] Install base packages (shell, terminal, WM)
 - [ ] Install language runtimes (nvm, bun, pyenv, go, ruby)
 - [ ] Install Neovim + run `:MasonInstallAll` for LSPs
-- [ ] Install fonts (FiraMono Nerd, SpaceMono Nerd)
+- [ ] Install fonts (ttf-fira-mono, ttf-space-mono-nerd)
 - [ ] Apply chezmoi dotfiles: `chezmoi init --apply Incognitux`
 - [ ] Run `lazy.nvim` sync in Neovim
 - [ ] Run `mason.nvim` to install LSP servers
