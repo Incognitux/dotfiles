@@ -262,7 +262,6 @@ sudo pacman -S zsh starship zoxide atuin nvm bun pyenv \
   intel-undervolt keyd pipewire wireplumber \
   grim slurp grimblast wl-clipboard wtype wf-recorder \
   qt6ct qt6-base qt6-5compat qt6-svg qt6-networkauth qt6-imageformats \
-  sptlrx \
   thunderbird firefox steam \
   pavucontrol nm-connection-editor gnome-control-center \
   gnome-calculator nautilus \
